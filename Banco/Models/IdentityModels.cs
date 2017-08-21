@@ -29,5 +29,7 @@ namespace Banco.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Banco.Persona> Personas { get; set; }
     }
 }
