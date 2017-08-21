@@ -17,7 +17,7 @@ namespace Banco.Models
             return userIdentity;
         }
     }
-
+    [Thread Statics]
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
