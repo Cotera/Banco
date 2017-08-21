@@ -255,8 +255,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DomicilioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
+    <Compile Include="Controllers\IDomicilioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Domicilio.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,6 +273,8 @@
     <Compile Include="Repository\DomicilioRepository.cs" />
     <Compile Include="Repository\IDomicioRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Service\DomicilioService.cs" />
+    <Compile Include="Service\IDomicilioService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
