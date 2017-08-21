@@ -274,12 +274,12 @@
     <Compile Include="Repository\IPersonasRepository.cs" />
     <Compile Include="Repository\PersonasRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
-<<<<<<< HEAD
+<!--<<<<<<< HEAD-->
     <Compile Include="Service\PersonasService.cs" />
-=======
+<!--=======-->
     <Compile Include="Service\DomicilioService.cs" />
     <Compile Include="Service\IDomicilioService.cs" />
->>>>>>> debeb9dc78aa6ac5dad4c66f65720855cb907545
+    <!-->>>>>>> debeb9dc78aa6ac5dad4c66f65720855cb907545-->
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -344,10 +344,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-<<<<<<< HEAD
+<!--<<<<<<< HEAD-->
     <Folder Include="Repository\" />
-=======
->>>>>>> be9e6c8e91ab4c0efac9a39261b888d3950e0ab8
+<!--=======
+>>>>>>> be9e6c8e91ab4c0efac9a39261b888d3950e0ab8-->
     <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
