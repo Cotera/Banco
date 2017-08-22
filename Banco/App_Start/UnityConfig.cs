@@ -21,6 +21,8 @@ namespace Banco
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             container.RegisterType<IPersonasService, PersonasService>();
             container.RegisterType<IPersonasRepository, PersonasRepository>();
+            container.RegisterType<ICuentaBancariaService,CuentaBancariaService>();
+            container.RegisterType<ICuentaBancariaRepository, CuentaBancariaRepository>();
         }
     }
 }

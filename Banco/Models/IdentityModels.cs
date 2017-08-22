@@ -34,5 +34,7 @@ namespace Banco.Models
         }
 
         public System.Data.Entity.DbSet<Banco.Persona> Personas { get; set; }
+
+        public System.Data.Entity.DbSet<Banco.CuentaBancaria> CuentaBancarias { get; set; }
     }
 }
