@@ -13,6 +13,7 @@ using Banco.Models;
 
 namespace Banco.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PersonasController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
