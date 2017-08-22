@@ -275,6 +275,7 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Repository\CuentaBancariaRepository.cs" />
     <Compile Include="Repository\DomicilioRepository.cs" />
+    <Compile Include="Repository\IDomicilioRepository.cs" />
     <Compile Include="Repository\ICuentaBancariaRepository.cs" />
     <Compile Include="Repository\IPersonasRepository.cs" />
     <Compile Include="Repository\PersonasRepository.cs" />
