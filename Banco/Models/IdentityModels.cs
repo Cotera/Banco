@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System;
 
 namespace Banco.Models
 {
@@ -17,9 +18,11 @@ namespace Banco.Models
             return userIdentity;
         }
     }
-    [Thread Statics]
+   
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        [ThreadStatic]
+        public static ApplicationDbContext applicationDbContext;
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

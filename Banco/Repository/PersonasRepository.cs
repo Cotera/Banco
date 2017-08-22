@@ -1,38 +1,38 @@
 ﻿using Banco.Models;
-using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 
 namespace Banco.Repository
 {
     public class PersonasRepository : IPersonasRepository
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
 
         public Persona Create(Persona _entrada)
         {
-            throw new NotImplementedException();
+            return ApplicationDbContext.applicationDbContext.Personas.Add(_entrada);
         }
 
         public Persona Delete(Persona persona)
         {
-            throw new NotImplementedException();
+            return ApplicationDbContext.applicationDbContext.Personas.Remove(persona);
         }
 
         public void PutEntrada(Persona persona)
         {
-            throw new NotImplementedException();
+            ApplicationDbContext.applicationDbContext.Entry(persona).State = EntityState.Modified;
         }
 
         public Persona Read(long id)
         {
-            return db.Personas.Find(id);
+            return ApplicationDbContext.applicationDbContext.Personas.Find(id);
         }
 
         public IQueryable<Persona> ReadPersonas()
         {
-            return ApplicationDbContext.applica.Personas;
+            IList<Persona> lista = new List<Persona>(ApplicationDbContext.applicationDbContext.Personas);
+            return lista.AsQueryable();
         }
     }
 }
