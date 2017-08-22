@@ -1,4 +1,6 @@
+using Banco.Controllers;
 using Banco.Service;
+using Banco.Repository;
 using Microsoft.Practices.Unity;
 using System.Web.Http;
 using Unity.WebApi;
@@ -17,7 +19,8 @@ namespace Banco
 			container.RegisterType<IDomicilioService, DomicilioService>();
             
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
-
+            container.RegisterType<IPersonasService, PersonasService>();
+            container.RegisterType<IPersonasRepository, PersonasRepository>();
         }
     }
 }

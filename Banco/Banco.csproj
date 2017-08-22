@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -276,6 +277,7 @@
     <Compile Include="Repository\PersonasRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <!--<<<<<<< HEAD-->
+    <Compile Include="Service\IPersonasService.cs" />
     <Compile Include="Service\PersonasService.cs" />
     <!--=======-->
     <Compile Include="Service\DomicilioService.cs" />

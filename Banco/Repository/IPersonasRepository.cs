@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Banco.Repository
 {
-    interface IPersonasRepository
+    public interface IPersonasRepository
     {
         Persona Create(Persona _entrada);
         Persona Delete(Persona persona);

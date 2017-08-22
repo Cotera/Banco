@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Banco.Services
+namespace Banco.Service
 {
     public class PersonasService : IPersonasService
     {
