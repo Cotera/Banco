@@ -101,7 +101,7 @@ namespace Banco.Controllers
                 return NotFound();
             }
 
-            this.PersonaService.Delete(persona);
+            this.PersonasService.Delete(persona);
 
             return Ok(persona);
         }
