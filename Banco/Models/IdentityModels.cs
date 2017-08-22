@@ -20,7 +20,9 @@ namespace Banco.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+		internal static object applicationDbContext;
+
+		public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
@@ -31,5 +33,8 @@ namespace Banco.Models
         }
 
         public System.Data.Entity.DbSet<Banco.Persona> Personas { get; set; }
-    }
+		public System.Data.Entity.DbSet<Banco.Domicilio> Domicilio { get; set; }
+
+	}
+
 }

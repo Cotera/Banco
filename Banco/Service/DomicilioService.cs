@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Banco.Models;
+using Banco.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,29 +9,128 @@ namespace Banco.Service
 {
 	public class DomicilioService : IDomicilioService
 	{
-		public void Create(Domicilio _domicilio)
+		private IDomicilioRepository domicilioRepository;
+
+		public DomicilioService(IDomicilioRepository _domicilioRepository)
 		{
-			throw new NotImplementedException();
+			this.domicilioRepository = _domicilioRepository;
 		}
 
-		public void Delete(long _id)
+		public Domicilio Create(Domicilio _domicilio)
 		{
-			throw new NotImplementedException();
+			using (var context = new ApplicationDbContext())
+			{
+				ApplicationDbContext.applicationDbContext = context;
+				using (var dbContextTransaction = context.Database.BeginTransaction())
+				{
+					try
+					{
+						_domicilio = domicilioRepository.Create(_domicilio);
+						context.SaveChanges();
+						dbContextTransaction.Commit();
+					}
+					catch(Exception e)
+					{
+						dbContextTransaction.Rollback();
+						throw new Exception("Rollback realizado ", e);
+					}
+				}
+			}
+
+			return _domicilio;
 		}
 
 		public Domicilio Read(long _id)
 		{
-			throw new NotImplementedException();
+			Domicilio resultado = null;
+
+			using (var context = new ApplicationDbContext())
+			{
+				using (var dbContextTransaction = context.Database.BeginTransaction())
+				{
+					try
+					{
+						resultado = domicilioRepository.Read(_id);
+							
+					}catch (Exception e)
+					{
+						throw new Exception("Fallo de lectura de db: ", e);
+					}
+				}
+			}
+			return resultado;
 		}
 
-		public IList<Domicilio> ReadAll(long _id)
+		public IQueryable<Domicilio> ReadAll()
 		{
-			throw new NotImplementedException();
+			IQueryable<Domicilio> resultado = null;
+			using (var context = new ApplicationDbContext())
+			{
+				ApplicationDbContext.applicationDbContext = context;
+				using (var dbContextTransaction = context.Database.BeginTransaction())
+				{
+					try
+					{
+						resultado = domicilioRepository.ReadAll();
+					}
+					catch (Exception e)
+					{
+						new Exception("Fallo de lectura de db: ", e);
+					}
+				}
+			}
+			return resultado;
 		}
 
 		public void Update(Domicilio _domicilio)
 		{
-			throw new NotImplementedException();
+			using (var context = new ApplicationDbContext())
+			{
+				ApplicationDbContext.applicationDbContext = context;
+				using (var dbContextTransaction = context.Database.BeginTransaction())
+				{
+					try
+					{
+						domicilioRepository.Update(_domicilio);
+						context.SaveChanges();
+						dbContextTransaction.Commit();
+					} catch(Exception e)
+					{
+						dbContextTransaction.Rollback();
+						throw new Exception("Rollback realizado ", e);
+					}
+				}
+			}
+			
 		}
+
+		public Domicilio Delete(long _id)
+		{
+			Domicilio resultado = null;
+			using (var context = new ApplicationDbContext())
+			{
+				ApplicationDbContext.applicationDbContext = context;
+				using (var dbContextTransaction = context.Database.BeginTransaction())
+				{
+					try
+					{
+						resultado = domicilioRepository.Delete(_id);
+						context.SaveChanges();
+						dbContextTransaction.Commit();
+					}
+					catch (NoEncontradoException)
+					{
+						dbContextTransaction.Rollback();
+						throw;
+					}
+					catch (Exception e)
+					{
+						new Exception("Rollback realizado ", e);
+					}
+				}
+			}
+			return resultado;
+		}
+
 	}
 }

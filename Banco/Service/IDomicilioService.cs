@@ -8,14 +8,14 @@ namespace Banco.Service
 {
 	public interface IDomicilioService
 	{
-		void Create(Domicilio _domicilio);
+		Domicilio Create(Domicilio _domicilio);
 
 		Domicilio Read(long _id);
 
-		IList<Domicilio> ReadAll(long _id);
-
-		void Delete(long _id);
+		IQueryable<Domicilio> ReadAll();
 
 		void Update(Domicilio _domicilio);
+
+		Domicilio Delete(long _id);
 	}
 }
