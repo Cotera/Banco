@@ -15,14 +15,13 @@ namespace Banco
 
 			// register all your components with the container here
 			// it is NOT necessary to register your controllers
-
-			container.RegisterType<IDomicilioService, DomicilioService>();
-            
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
             container.RegisterType<IPersonasService, PersonasService>();
             container.RegisterType<IPersonasRepository, PersonasRepository>();
             container.RegisterType<ICuentaBancariaService,CuentaBancariaService>();
             container.RegisterType<ICuentaBancariaRepository, CuentaBancariaRepository>();
+			container.RegisterType<IDomicilioRepository, DomicilioRepository>();
+			container.RegisterType<IDomicilioService, DomicilioService>();
         }
     }
 }
