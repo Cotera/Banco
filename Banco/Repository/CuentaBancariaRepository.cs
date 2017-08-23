@@ -27,9 +27,13 @@ namespace Banco.Repository
             return ApplicationDbContext.applicationDbContext.CuentaBancarias.Find(Id);
         }
 
-        public CuentaBancaria Delete(CuentaBancaria cuentaBancaria)
+        public CuentaBancaria Delete(long Id)
         {
-
+            CuentaBancaria cuentaBancaria = this.Read(Id);
+            if (cuentaBancaria == null)
+            {
+                throw new NoEncontradoException("No se ha encontrado la persona  a eliminar");
+            }
             return ApplicationDbContext.applicationDbContext.CuentaBancarias.Remove(cuentaBancaria);
 
         }

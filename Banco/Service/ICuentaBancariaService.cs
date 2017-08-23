@@ -8,6 +8,6 @@ namespace Banco.Service
         IQueryable<CuentaBancaria> ReadCuentaBancarias();
         CuentaBancaria GetCuentaBancaria(long Id);
         void PutCuentaBancaria(CuentaBancaria cuentaBancaria);
-        CuentaBancaria Delete(CuentaBancaria cuentaBancaria);
+        CuentaBancaria Delete(long Id);
     }
 }

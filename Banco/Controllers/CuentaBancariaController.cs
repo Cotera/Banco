@@ -85,7 +85,7 @@ namespace Banco.Controllers
                 return BadRequest(ModelState);
             }
 
-            this.CuentaBancariaService.PutCuentaBancaria(cuentaBancaria);
+            this.CuentaBancariaService.Create(cuentaBancaria);
 
             return CreatedAtRoute("DefaultApi", new { id = cuentaBancaria.Id }, cuentaBancaria);
         }
@@ -100,7 +100,7 @@ namespace Banco.Controllers
                 return NotFound();
             }
 
-            this.CuentaBancariaService.Delete(cuentaBancaria);
+            this.CuentaBancariaService.Delete(Id);
 
             return Ok(cuentaBancaria);
         }

@@ -111,7 +111,7 @@ namespace Banco.Service
             }
         }
 
-        public CuentaBancaria Delete(CuentaBancaria cuentaBancaria)
+        public CuentaBancaria Delete(long Id)
         {
             CuentaBancaria resultado;
             using (var context = new ApplicationDbContext())
@@ -121,7 +121,7 @@ namespace Banco.Service
                 {
                     try
                     {
-                        resultado = cuentaBancariaRepository.Delete(cuentaBancaria);
+                        resultado = cuentaBancariaRepository.Delete(Id);
                         context.SaveChanges();
                         dbContextTransaction.Commit();
                     }
