@@ -13,6 +13,11 @@ namespace Banco.Controllers
 	{
 		private IDomicilioService domicilioService;
 
+		public DomicilioController()
+		{
+
+		}
+
 		public DomicilioController(DomicilioService _domicilioService)
 		{
 			this.domicilioService = _domicilioService;

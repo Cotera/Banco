@@ -29,7 +29,7 @@ namespace Banco.Repository
 		public void Update(Domicilio _domicilio)
 		{
 			if (ApplicationDbContext.applicationDbContext.Domicilio.Count
-				(d => d.Id == _domicilio.Id == 0))
+				(d => d.Id == _domicilio.Id) == 0)
 			{
 				throw new NoEncontradoException("No se ha encontrado la entidad");
 			}
