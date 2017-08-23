@@ -5,11 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 
 namespace Banco.Controllers
 {
-	public class DomicilioController : ApiController
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    public class DomicilioController : ApiController
 	{
 		private IDomicilioService domicilioService;
 

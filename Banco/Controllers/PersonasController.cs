@@ -10,24 +10,31 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Banco;
 using Banco.Models;
+using System.Web.Http.Cors;
+using Banco.Service;
 
 namespace Banco.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PersonasController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IPersonasService PersonasService;
+        public PersonasController(IPersonasService _PersonasService)
+        {
+            this.PersonasService = _PersonasService;
+        }
 
         // GET: api/Personas
         public IQueryable<Persona> GetPersonas()
         {
-            return db.Personas;
+            return this.PersonasService.ReadPersonas();
         }
 
         // GET: api/Personas/5
         [ResponseType(typeof(Persona))]
         public IHttpActionResult GetPersona(long id)
         {
-            Persona persona = db.Personas.Find(id);
+            Persona persona = this.PersonasService.GetPersona(id);
             if (persona == null)
             {
                 return NotFound();
@@ -50,15 +57,14 @@ namespace Banco.Controllers
                 return BadRequest();
             }
 
-            db.Entry(persona).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                this.PersonasService.PutPersona(persona);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonaExists(id))
+                if (this.PersonasService.GetPersona(id) == null)
                 {
                     return NotFound();
                 }
@@ -80,8 +86,7 @@ namespace Banco.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Personas.Add(persona);
-            db.SaveChanges();
+            persona = this.PersonasService.Create(persona);
 
             return CreatedAtRoute("DefaultApi", new { id = persona.Id }, persona);
         }
@@ -90,30 +95,17 @@ namespace Banco.Controllers
         [ResponseType(typeof(Persona))]
         public IHttpActionResult DeletePersona(long id)
         {
-            Persona persona = db.Personas.Find(id);
+            Persona persona = this.PersonasService.GetPersona(id);
             if (persona == null)
             {
                 return NotFound();
             }
 
-            db.Personas.Remove(persona);
-            db.SaveChanges();
+            this.PersonasService.Delete(persona);
 
             return Ok(persona);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool PersonaExists(long id)
-        {
-            return db.Personas.Count(e => e.Id == id) > 0;
-        }
+        
     }
 }

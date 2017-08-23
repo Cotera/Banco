@@ -11,9 +11,11 @@ using System.Web.Http.Description;
 using Banco;
 using Banco.Models;
 using Banco.Service;
+using System.Web.Http.Cors;
 
 namespace Banco.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CuentaBancariaController : ApiController
     {
         private ICuentaBancariaService CuentaBancariaService;
