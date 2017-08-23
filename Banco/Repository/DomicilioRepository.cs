@@ -47,7 +47,6 @@ namespace Banco.Repository
 				throw new NoEncontradoException("Entidad no encontrada");
 			}
 			ApplicationDbContext.applicationDbContext.Domicilio.Remove(domicilio);
-			ApplicationDbContext.applicationDbContext.SaveChanges();
 
 			return domicilio;
 		}
