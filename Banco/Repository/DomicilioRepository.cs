@@ -14,9 +14,9 @@ namespace Banco.Repository
 			return ApplicationDbContext.applicationDbContext.Domicilio.Add(_domicilio);
 		}
 
-		public Domicilio Read(long _id)
+		public Domicilio Read(long id)
 		{
-			return ApplicationDbContext.applicationDbContext.Domicilio.Find(_id);
+			return ApplicationDbContext.applicationDbContext.Domicilio.Find(id);
 		}
 
 		public IQueryable<Domicilio> ReadAll()
@@ -26,29 +26,27 @@ namespace Banco.Repository
 			return lista.AsQueryable();
 		}
 
-		public void Update(Domicilio _domicilio)
+		public void Update(Domicilio domicilio)
 		{
 			if (ApplicationDbContext.applicationDbContext.Domicilio.Count
-				(d => d.Id == _domicilio.Id) == 0)
+				(d => d.Id == domicilio.Id) == 0)
 			{
 				throw new NoEncontradoException("No se ha encontrado la entidad");
 			}
 
-			ApplicationDbContext.applicationDbContext.Entry(_domicilio).State =
+			ApplicationDbContext.applicationDbContext.Entry(domicilio).State =
 				EntityState.Modified;
-			throw new NotImplementedException();
 		}
 
-		public Domicilio Delete(long _id)
+		public Domicilio Delete(long id)
 		{
-			Domicilio domicilio = ApplicationDbContext.applicationDbContext.Domicilio.Find(_id);
+			Domicilio domicilio = ApplicationDbContext.applicationDbContext.Domicilio.Find(id);
 
 			if (domicilio == null)
 			{
 				throw new NoEncontradoException("Entidad no encontrada");
 			}
 			ApplicationDbContext.applicationDbContext.Domicilio.Remove(domicilio);
-			ApplicationDbContext.applicationDbContext.SaveChanges();
 
 			return domicilio;
 		}

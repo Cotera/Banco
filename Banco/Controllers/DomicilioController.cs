@@ -15,6 +15,11 @@ namespace Banco.Controllers
 	{
 		private IDomicilioService domicilioService;
 
+		public DomicilioController()
+		{
+
+		}
+
 		public DomicilioController(DomicilioService _domicilioService)
 		{
 			this.domicilioService = _domicilioService;
@@ -22,22 +27,22 @@ namespace Banco.Controllers
 
 		// POST : api/Domicilio
 		[ResponseType(typeof(Domicilio))]
-		public IHttpActionResult Create(Domicilio _domicilio)
+		public IHttpActionResult PostCreate(Domicilio domicilio)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			_domicilio = domicilioService.Create(_domicilio);
-			return CreatedAtRoute("DefaultApi", new { id = _domicilio.Id }, _domicilio);
+			domicilio = domicilioService.Create(domicilio);
+			return CreatedAtRoute("DefaultApi", new { id = domicilio.Id }, domicilio);
 		}
 
 		// GET : api/Domicilio/5
 		[ResponseType(typeof(Domicilio))]
-		public IHttpActionResult Read(long _id)
+		public IHttpActionResult GetRead(long id)
 		{
-			Domicilio domicilio = domicilioService.Read(_id);
+			Domicilio domicilio = domicilioService.Read(id);
 
 			if(domicilio == null)
 			{
@@ -48,27 +53,27 @@ namespace Banco.Controllers
 		}
 
 		// GET : api/Domicilio
-		public IQueryable<Domicilio> ReadAll()
+		public IQueryable<Domicilio> GetReadAll()
 		{
 			return domicilioService.ReadAll();
 		}
 
-		// PUT : api/Domicilio
+		// PUT : api/Domicilio/5
 		[ResponseType(typeof(void))]
-		public IHttpActionResult Update(long _id, Domicilio _domicilio)
+		public IHttpActionResult PutUpdate(long id, Domicilio domicilio)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
-			if (_id != _domicilio.Id)
+			if (id != domicilio.Id)
 			{
 				return BadRequest();
 			}
 
 			try
 			{
-				domicilioService.Update(_domicilio);
+				domicilioService.Update(domicilio);
 			}
 			catch (NoEncontradoException)
 			{
@@ -79,11 +84,11 @@ namespace Banco.Controllers
 
 		// DELETE : api/Domicilio/5
 		[ResponseType(typeof(Domicilio))]
-		public IHttpActionResult Delete(long _id)
+		public IHttpActionResult Delete(long id)
 		{
 			try
 			{
-				return Ok( domicilioService.Delete(_id) );
+				return Ok( domicilioService.Delete(id) );
 			}
 			catch (NoEncontradoException)
 			{

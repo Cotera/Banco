@@ -16,7 +16,7 @@ namespace Banco.Service
 			this.domicilioRepository = _domicilioRepository;
 		}
 
-		public Domicilio Create(Domicilio _domicilio)
+		public Domicilio Create(Domicilio domicilio)
 		{
 			using (var context = new ApplicationDbContext())
 			{
@@ -25,7 +25,7 @@ namespace Banco.Service
 				{
 					try
 					{
-						_domicilio = domicilioRepository.Create(_domicilio);
+						domicilio = domicilioRepository.Create(domicilio);
 						context.SaveChanges();
 						dbContextTransaction.Commit();
 					}
@@ -37,20 +37,21 @@ namespace Banco.Service
 				}
 			}
 
-			return _domicilio;
+			return domicilio;
 		}
 
-		public Domicilio Read(long _id)
+		public Domicilio Read(long id)
 		{
 			Domicilio resultado = null;
 
 			using (var context = new ApplicationDbContext())
 			{
+				ApplicationDbContext.applicationDbContext = context;
 				using (var dbContextTransaction = context.Database.BeginTransaction())
 				{
 					try
 					{
-						resultado = domicilioRepository.Read(_id);
+						resultado = domicilioRepository.Read(id);
 							
 					}catch (Exception e)
 					{
@@ -82,7 +83,7 @@ namespace Banco.Service
 			return resultado;
 		}
 
-		public void Update(Domicilio _domicilio)
+		public void Update(Domicilio domicilio)
 		{
 			using (var context = new ApplicationDbContext())
 			{
@@ -91,7 +92,7 @@ namespace Banco.Service
 				{
 					try
 					{
-						domicilioRepository.Update(_domicilio);
+						domicilioRepository.Update(domicilio);
 						context.SaveChanges();
 						dbContextTransaction.Commit();
 					} catch(Exception e)
@@ -104,7 +105,7 @@ namespace Banco.Service
 			
 		}
 
-		public Domicilio Delete(long _id)
+		public Domicilio Delete(long id)
 		{
 			Domicilio resultado = null;
 			using (var context = new ApplicationDbContext())
@@ -114,7 +115,7 @@ namespace Banco.Service
 				{
 					try
 					{
-						resultado = domicilioRepository.Delete(_id);
+						resultado = domicilioRepository.Delete(id);
 						context.SaveChanges();
 						dbContextTransaction.Commit();
 					}

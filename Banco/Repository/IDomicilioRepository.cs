@@ -8,15 +8,15 @@ namespace Banco.Repository
 {
 	public interface IDomicilioRepository
 	{
-		Domicilio Create(Domicilio _domicilio);
+		Domicilio Create(Domicilio domicilio);
 
-		Domicilio Read(long _id);
+		Domicilio Read(long id);
 
 		IQueryable<Domicilio> ReadAll();
 
-		void Update(Domicilio _domicilio);
+		void Update(Domicilio domicilio);
 
-		Domicilio Delete(long _id);
+		Domicilio Delete(long id);
 
 	}
 }
