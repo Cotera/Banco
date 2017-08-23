@@ -14,9 +14,15 @@ namespace Banco.Repository
             return ApplicationDbContext.applicationDbContext.Personas.Add(_entrada);
         }
 
-        public Persona Delete(Persona persona)
+        public Persona Delete(long id)
         {
+            Persona persona = this.Read(id);
+            if(persona == null)
+            {
+                throw new NoEncontradoException("No se ha encontrado la persona  a eliminar");
+            }
             return ApplicationDbContext.applicationDbContext.Personas.Remove(persona);
+
         }
 
         public void PutEntrada(Persona persona)

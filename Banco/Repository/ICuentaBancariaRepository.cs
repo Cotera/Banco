@@ -6,7 +6,7 @@ namespace Banco.Repository
     {
         CuentaBancaria Create(CuentaBancaria _entrada);
         IQueryable<CuentaBancaria> ReadCuentaBancaria();
-        CuentaBancaria Read(string no);
+        CuentaBancaria Read(long Id);
         CuentaBancaria Delete(CuentaBancaria cuentaBancaria);
         void PutEntrada(CuentaBancaria cuentaBancaria);
     }

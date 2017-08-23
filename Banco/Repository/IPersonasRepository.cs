@@ -9,7 +9,7 @@ namespace Banco.Repository
     public interface IPersonasRepository
     {
         Persona Create(Persona _entrada);
-        Persona Delete(Persona persona);
+        Persona Delete(long id);
         void PutEntrada(Persona persona);
         Persona Read(long id);
         IQueryable<Persona> ReadPersonas();

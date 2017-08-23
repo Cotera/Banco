@@ -9,7 +9,7 @@ namespace Banco.Service
     public interface IPersonasService
     {
         Persona Create(Persona persona);
-        Persona Delete(Persona persona);
+        Persona Delete(long id);
         Persona GetPersona(long id);
         void PutPersona(Persona persona);
         IQueryable<Persona> ReadPersonas();

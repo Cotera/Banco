@@ -63,7 +63,7 @@ namespace Banco.Service
             }
         }
 
-        public CuentaBancaria GetCuentaBancaria(string no)
+        public CuentaBancaria GetCuentaBancaria(long Id)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -73,7 +73,7 @@ namespace Banco.Service
                 {
                     try
                     {
-                        cuentaBancaria = cuentaBancariaRepository.Read(no);
+                        cuentaBancaria = cuentaBancariaRepository.Read(Id);
                         context.SaveChanges();
                         dbContextTransaction.Commit();
                     }

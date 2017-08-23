@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Banco;
-using Banco.Models;
 using System.Web.Http.Cors;
 using Banco.Service;
 
@@ -95,15 +88,16 @@ namespace Banco.Controllers
         [ResponseType(typeof(Persona))]
         public IHttpActionResult DeletePersona(long id)
         {
-            Persona persona = this.PersonasService.GetPersona(id);
-            if (persona == null)
+            try
+            {
+                return Ok(this.PersonasService.Delete(id));
+            }catch(NoEncontradoException e)
             {
                 return NotFound();
             }
 
-            this.PersonasService.Delete(persona);
 
-            return Ok(persona);
+           
         }
 
         

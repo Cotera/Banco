@@ -1,9 +1,7 @@
 ﻿using Banco.Models;
 using Banco.Repository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Banco.Service
 {
@@ -111,7 +109,7 @@ namespace Banco.Service
             }
         }
 
-        public Persona Delete(Persona persona)
+        public Persona Delete(long id)
         {
             Persona resultado;
             using (var context = new ApplicationDbContext())
@@ -121,13 +119,17 @@ namespace Banco.Service
                 {
                     try
                     {
-                        resultado = personasRepository.Delete(persona);
+                        resultado = personasRepository.Delete(id);
                         context.SaveChanges();
                         dbContextTransaction.Commit();
                     }
-                    catch (Exception ex)
+                    catch(NoEncontradoException)
                     {
                         dbContextTransaction.Rollback();
+                        throw;
+                    }
+                    catch (Exception ex)
+                    {
                         throw new Exception("He hecho rollback de la transaccion", ex);
                     }
 

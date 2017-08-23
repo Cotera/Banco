@@ -24,16 +24,16 @@ namespace Banco.Controllers
             this.CuentaBancariaService = _CuentaBancariaService;
         }
         // GET: api/CuentaBancaria
-        public IQueryable<CuentaBancaria> GetCuentaBancarias()
+        public IQueryable<CuentaBancaria> GetCuentaBancaria()
         {
             return this.CuentaBancariaService.ReadCuentaBancarias();
         }
 
         // GET: api/CuentaBancaria/5
         [ResponseType(typeof(CuentaBancaria))]
-        public IHttpActionResult GetCuentaBancaria(string no)
+        public IHttpActionResult GetCuentaBancaria(long Id)
         {
-            CuentaBancaria cuentaBancaria = this.CuentaBancariaService.GetCuentaBancaria(no);
+            CuentaBancaria cuentaBancaria = this.CuentaBancariaService.GetCuentaBancaria(Id);
             if (cuentaBancaria == null)
             {
                 return NotFound();
@@ -44,14 +44,14 @@ namespace Banco.Controllers
 
         // PUT: api/CuentaBancaria/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCuentaBancaria(String no, CuentaBancaria cuentaBancaria)
+        public IHttpActionResult PutCuentaBancaria(long Id, CuentaBancaria cuentaBancaria)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (no != cuentaBancaria.No)
+            if (Id != cuentaBancaria.Id)
             {
                 return BadRequest();
             }
@@ -63,7 +63,7 @@ namespace Banco.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (this.CuentaBancariaService.GetCuentaBancaria(no)==null)
+                if (this.CuentaBancariaService.GetCuentaBancaria(Id)==null)
                 {
                     return NotFound();
                 }
@@ -87,14 +87,14 @@ namespace Banco.Controllers
 
             this.CuentaBancariaService.PutCuentaBancaria(cuentaBancaria);
 
-            return CreatedAtRoute("DefaultApi", new { id = cuentaBancaria.No }, cuentaBancaria);
+            return CreatedAtRoute("DefaultApi", new { id = cuentaBancaria.Id }, cuentaBancaria);
         }
 
         // DELETE: api/CuentaBancaria/5
         [ResponseType(typeof(CuentaBancaria))]
-        public IHttpActionResult DeleteCuentaBancaria(string no)
+        public IHttpActionResult DeleteCuentaBancaria(long Id)
         {
-            CuentaBancaria cuentaBancaria = this.CuentaBancariaService.GetCuentaBancaria(no);
+            CuentaBancaria cuentaBancaria = this.CuentaBancariaService.GetCuentaBancaria(Id);
             if (cuentaBancaria == null)
             {
                 return NotFound();

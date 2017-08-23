@@ -8,7 +8,7 @@ namespace Banco
 {
     public class CuentaBancaria
     {
-        [Key]
+        public long Id { get; set; }
         public String No { get; set; }
         public DateTime FechaCreacion { get; set; }
         public Double Saldo { get; set; }

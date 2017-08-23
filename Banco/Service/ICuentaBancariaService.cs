@@ -6,7 +6,7 @@ namespace Banco.Service
     {
         CuentaBancaria Create(CuentaBancaria cuentaBancaria);
         IQueryable<CuentaBancaria> ReadCuentaBancarias();
-        CuentaBancaria GetCuentaBancaria(string no);
+        CuentaBancaria GetCuentaBancaria(long Id);
         void PutCuentaBancaria(CuentaBancaria cuentaBancaria);
         CuentaBancaria Delete(CuentaBancaria cuentaBancaria);
     }

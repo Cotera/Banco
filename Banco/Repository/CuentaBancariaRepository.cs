@@ -21,10 +21,10 @@ namespace Banco.Repository
             return lista.AsQueryable();
         }
 
-        public CuentaBancaria Read(string no)
+        public CuentaBancaria Read(long Id)
         {
 
-            return ApplicationDbContext.applicationDbContext.CuentaBancarias.Find(no);
+            return ApplicationDbContext.applicationDbContext.CuentaBancarias.Find(Id);
         }
 
         public CuentaBancaria Delete(CuentaBancaria cuentaBancaria)
