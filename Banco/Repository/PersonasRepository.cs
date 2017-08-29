@@ -9,9 +9,9 @@ namespace Banco.Repository
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
 
-        public Persona Create(Persona _entrada)
+        public Persona Create(Persona persona)
         {
-            return ApplicationDbContext.applicationDbContext.Personas.Add(_entrada);
+            return ApplicationDbContext.applicationDbContext.Personas.Add(persona);
         }
 
         public Persona Delete(long id)
